@@ -1,0 +1,98 @@
+[
+    {
+        "qariName": "Maher al-Muaiqly",
+        "imagePath": "assets/images/qaris/Maher-al-Muaiqly.png",
+        "surahs": [
+            {
+                "surahNumber": 1,
+                "name": "Surat-Al-Fatihah",
+                "audioPath": "assets/surahs/qari1/Surat-Al-Fatihah.mp3",
+                "duration": "00:45"
+            },
+            {
+                "surahNumber": 2,
+                "name": "Surat-Al-Kafirun",
+                "audioPath": "assets/surahs/qari1/Surat-Al-Kafirun.mp3",
+                "duration": "30:00"
+            },
+            {
+                "surahNumber": 3,
+                "name": "Surat-Al-Kawthar",
+                "audioPath": "assets/surahs/qari1/Surat-Al-Kawthar.mp3",
+                "duration": "30:00"
+            },
+            {
+                "surahNumber": 4,
+                "name": "Al-Baqara",
+                "audioPath": "assets/surahs/qari1/Surat-Quraysh.mp3",
+                "duration": "30:00"
+            }
+        ]
+    },
+    
+    
+    
+    {
+        "qariName": "Hatem Farid",
+        "imagePath": "assets/images/qaris/Hatem-Farid.png",
+        "surahs": [
+            {
+                "surahNumber": 1,
+                "name": "Surat-Al-Fajr",
+                "audioPath": "assets/surahs/qari2/Surat-Al-Fajr.mp3",
+                "duration": "30:00"
+            },
+            {
+                "surahNumber": 2,
+                "name": "Surat-Al-Fatihah",
+                "audioPath": "assets/surahs/qari2/Surat-Al-Fatihah.mp3",
+                "duration": "00:45"
+            },
+            {
+                "surahNumber": 3,
+                "name": "Surat-Al-Ghashiyah",
+                "audioPath": "assets/surahs/qari2/Surat-Al-Ghashiyah.mp3",
+                "duration": "30:00"
+            },
+            {
+                "surahNumber": 4,
+                "name": "An-Nazi'at",
+                "audioPath": "assets/surahs/qari2/Surat-An-Nazi'at.mp3",
+                "duration": "30:00"
+            }
+        ]
+    },
+    
+    
+    
+    {
+        "qariName": "Abdallah Abdal",
+        "imagePath": "assets/images/qaris/Abdallah-Abdal.png",
+        "surahs": [
+            {
+                "surahNumber": 1,
+                "name": "Surat-Al-Fatihah",
+                "audioPath": "assets/surahs/qari3/Surat-Al-Fatihah.mp3",
+                "duration": "00:45"
+            },
+            {
+                "surahNumber": 2,
+                "name": "Surat-Al-Fil",
+                "audioPath": "assets/surahs/qari3/Surat-Al-Fil.mp3",
+                "duration": "30:00"
+            },
+            {
+                "surahNumber": 3,
+                "name": "Surat-Al-Ikhlas",
+                "audioPath": "assets/surahs/qari3/Surat-Al-Ikhlas.mp3",
+                "duration": "30:00"
+            },
+            {
+                "surahNumber": 4,
+                "name": "Surat-Al-Kafirun",
+                "audioPath": "assets/surahs/qari3/Surat-Al-Kafirun.mp3",
+                "duration": "30:00"
+            }
+        ]
+    }
+]

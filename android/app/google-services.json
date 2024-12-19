@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "807122748552",
+    "project_id": "quran-tunes",
+    "storage_bucket": "quran-tunes.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807122748552:android:f4e8f236bd0118d4ddcb3d",
+        "android_client_info": {
+          "package_name": "com.example.quran_tunes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807122748552-4crqnm5lhpdu4gs8id0n2lvesl5satsi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quran_tunes",
+            "certificate_hash": "4db22e36c34f5928aa5be2dfb9f5b0fe6ac5580b"
+          }
+        },
+        {
+          "client_id": "807122748552-6avcku5ulghi6snogd46bs6i8te6o09b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjiSs0OH5F_-75jnRl29Yhpjx4UUFx1rA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807122748552-6avcku5ulghi6snogd46bs6i8te6o09b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
