@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:quran_tunes/services/auth_service.dart';
 import 'package:quran_tunes/controllers/qari_controller.dart';
+import 'package:quran_tunes/ui/screens/user_profile.dart';
+import '../../controllers/favorite_controller.dart';
 import 'player_page.dart';
 import 'sign_in_page.dart';
 
@@ -24,7 +26,7 @@ class Home extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: SvgPicture.asset(
-          'assets/vectors/spotify_logo.svg',
+          'assets/vectors/logo.svg',
           height: size.height * 0.05,
         ),
         centerTitle: true,
@@ -32,21 +34,21 @@ class Home extends StatelessWidget {
         automaticallyImplyLeading: false,
         actions: [
           GestureDetector(
-            onTap: () async {
-              await authService.signout();
-              Get.to(() => const SignInPage());
+            onTap: () {
+              Get.to(() => const UserProfile());
             },
             child: Obx(() => Container(
                   margin: const EdgeInsets.only(right: 16),
                   child: authService.photoUrl.isNotEmpty
                       ? CircleAvatar(
-                          radius: 14,
+                          radius: 18,
                           backgroundImage:
                               NetworkImage(authService.photoUrl.value),
                         )
                       : const Icon(
                           CupertinoIcons.person_alt_circle,
                           color: Colors.white,
+                          size: 30,
                         ),
                 )),
           ),
@@ -66,18 +68,47 @@ class Home extends StatelessWidget {
             children: [
               CarouselSlider(
                 items: [
-                  SvgPicture.asset('assets/vectors/home_top_card.svg'),
-                  SvgPicture.asset('assets/vectors/home_top_card.svg'),
-                  SvgPicture.asset('assets/vectors/home_top_card.svg'),
+                  Stack(
+                      children: [
+                        Align(
+                            alignment: Alignment.bottomCenter,
+                            child: SvgPicture.asset('assets/vectors/Carousel_m.svg')),
+                        Positioned(
+                            left: size.width * .63,
+                            child: Image.asset("assets/images/lamp_m.png"))
+                      ],
+                  ),
+                  Stack(
+                    children: [
+                      Align(
+                          alignment: Alignment.bottomCenter,
+                          child: SvgPicture.asset('assets/vectors/Carousel_s.svg')),
+                      Positioned(
+                          left: size.width * .49,
+                          bottom: 4,
+                          child: Image.asset("assets/images/tosbi_s.png"))
+                    ],
+                  ),Stack(
+                    children: [
+                      Align(
+                          alignment: Alignment.bottomCenter,
+                          child: SvgPicture.asset('assets/vectors/Carousel_b.svg')),
+                      Positioned(
+                          left: size.width * .55,
+                          bottom: 3,
+                          child: Image.asset("assets/images/quran_b.png"))
+                    ],
+                  ),
                 ],
                 options: CarouselOptions(
-                  height: size.height * 0.23,
+                  height: size.height * 0.255,
                   autoPlay: true,
                   autoPlayAnimationDuration: const Duration(seconds: 2),
                   autoPlayCurve: Curves.fastOutSlowIn,
                   viewportFraction: 1,
                 ),
               ),
+              SizedBox(height: size.height * 0.015,),
               Padding(
                 padding: const EdgeInsets.only(left: 16),
                 child: Text(
@@ -123,10 +154,10 @@ class Home extends StatelessWidget {
                         final surah = surahs[index];
                         return GestureDetector(
                           onTap: () => Get.to(() => PlayerPage(
-                            surahName: surah['name'], 
-                            qariName: qari['qariName'], 
-                            audioPath: surah['audioPath'], 
-                            duration: surah['duration'], 
+                            surahName: surah['name'],
+                            qariName: qari['qariName'],
+                            audioPath: surah['audioPath'],
+                            duration: surah['duration'],
                             qariImagePath: qari['imagePath'],
                           )),
                           child: ListTile(
@@ -141,14 +172,35 @@ class Home extends StatelessWidget {
                               "Duration: ${surah['duration']}",
                               style: const TextStyle(color: Colors.grey),
                             ),
-                            trailing: IconButton(
-                              onPressed: () {
-                                print("Playing ${surah['audioPath']}");
-                              },
-                              icon: const Icon(CupertinoIcons.heart),
-                            ),
+                            trailing: Obx(() {
+                              final isFavorite = Get.find<FavoriteController>()
+                                  .favorites
+                                  .any((fav) => fav['surahName'] == surah['name']);
+                              final favoriteId = isFavorite
+                                  ? Get.find<FavoriteController>()
+                                  .favorites
+                                  .firstWhere((fav) => fav['surahName'] == surah['name'])['id']
+                                  : null;
+
+                              return IconButton(
+                                icon: Icon(
+                                  isFavorite ? Icons.favorite : Icons.favorite_border,
+                                  color: CupertinoColors.inactiveGray
+                                ),
+                                onPressed: () {
+                                  Get.find<FavoriteController>().toggleFavorite(
+                                    surah['name'],
+                                    qari['qariName'],
+                                    surah['audioPath'],
+                                    isFavorite,
+                                    favoriteId,
+                                  );
+                                },
+                              );
+                            }),
                           ),
                         );
+
                       },
                     );
                   }).toList(),

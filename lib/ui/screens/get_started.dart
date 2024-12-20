@@ -19,7 +19,7 @@ class GetStarted extends StatelessWidget {
             padding: const EdgeInsets.all(40),
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/get_started_bg.png'),
+                image: AssetImage('assets/images/get_started.png'),
                 fit: BoxFit.cover
               ),
             ),
@@ -35,7 +35,7 @@ class GetStarted extends StatelessWidget {
               children: [
                 Align(
                   alignment: Alignment.topCenter,
-                  child: SvgPicture.asset('assets/vectors/spotify_logo.svg'),
+                  child: SvgPicture.asset('assets/vectors/logo.svg'),
                 ),
     
                 const Spacer(),

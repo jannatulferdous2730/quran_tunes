@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quran_tunes/controllers/favorite_controller.dart';
 import '../../controllers/player_controller.dart';
 
 class PlayerPage extends StatelessWidget {
@@ -20,6 +21,7 @@ class PlayerPage extends StatelessWidget {
   });
 
   final PlayerController playerController = Get.put(PlayerController());
+  final FavoriteController favoriteController = Get.find<FavoriteController>();
 
   @override
   Widget build(BuildContext context) {
@@ -81,14 +83,23 @@ class PlayerPage extends StatelessWidget {
                     )
                   ],
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.favorite,
-                    size: 25,
-                    color: CupertinoColors.darkBackgroundGray,
-                  ),
-                ),
+                Obx(() {
+                  final isFavorite = favoriteController.favorites.any((fav) => fav['surahName'] == surahName);
+                  final favoriteId = isFavorite
+                      ? favoriteController.favorites.firstWhere((fav) => fav['surahName'] == surahName)['id']
+                      : null;
+
+                  return IconButton(
+                    onPressed: () {
+                      favoriteController.toggleFavorite(surahName, qariName, audioPath, isFavorite, favoriteId);
+                    },
+                    icon: Icon(
+                      isFavorite ? Icons.favorite : Icons.favorite_border,
+                      size: 25,
+                      color: CupertinoColors.inactiveGray,
+                    ),
+                  );
+                }),
               ],
             ),
             const SizedBox(height: 20),

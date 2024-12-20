@@ -9,19 +9,39 @@ class AuthService extends GetxController {
   SharedPreferencesService sharedPreferencesService = SharedPreferencesService();
 
   RxString photoUrl = "".obs; // Observable string to store the photo URL
-
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //   _loadCurrentUser(); // Load user data when the service initializes
-  // }
+  RxString userName = "".obs; // Observable string to store the user's name
+  RxString userEmail = "".obs; // Observable string to store the user's email
 
   Future<void> loadCurrentUser() async {
     final currentUser = _auth.currentUser;
-    if (currentUser?.photoURL != null) {
-      photoUrl.value = currentUser!.photoURL!;
+
+    if (currentUser != null) {
+      // Load user's photo URL
+      if (currentUser.photoURL != null) {
+        photoUrl.value = currentUser.photoURL!;
+      }
+
+      // Load user's name
+      if (currentUser.displayName != null) {
+        userName.value = currentUser.displayName!;
+      } else {
+        userName.value = "Guest"; // Default if name is not available
+      }
+
+      // Load user's email
+      if (currentUser.email != null) {
+        userEmail.value = currentUser.email!;
+      } else {
+        userEmail.value = "No Email"; // Default if email is not available
+      }
+    } else {
+      // If no user is signed in
+      photoUrl.value = "";
+      userName.value = "Guest";
+      userEmail.value = "No Email";
     }
   }
+
 
   Future<UserCredential?> signInWithGoogle() async {
   try {
@@ -83,21 +103,44 @@ class AuthService extends GetxController {
     }
   }
 
-  Future<User?> loginUserWithEmailAndPassword(
-      String email, String password) async {
+  Future<User?> loginUserWithEmailAndPassword(String email, String password) async {
     try {
-      final cred = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+      final cred = await _auth.signInWithEmailAndPassword(email: email, password: password);
       String uid = cred.user!.uid;
+
+      // Save the user's UID to shared preferences
       await sharedPreferencesService.saveString(uid);
-      print("registered user: ${await sharedPreferencesService.getString("uid")}");
+      print("Registered user: ${await sharedPreferencesService.getString("uid")}");
+
       return cred.user;
+    } on FirebaseAuthException catch (e) {
+      // Handle specific FirebaseAuth errors
+      String errorMessage;
+
+      switch (e.code) {
+        case 'user-not-found':
+          errorMessage = "No user found for this email.";
+          break;
+        case 'wrong-password':
+          errorMessage = "Incorrect password.";
+          break;
+        case 'invalid-email':
+          errorMessage = "The email address is not valid.";
+          break;
+        default:
+          errorMessage = "An unknown error occurred.";
+      }
+
+      // Show a Snackbar with the specific error
+      Get.snackbar("Login Error", errorMessage);
     } catch (e) {
+      // Handle other exceptions
       print(e);
       Get.snackbar("Error", "Something went wrong");
     }
     return null;
   }
+
 
   signin(String email, String password) async {
     final user = await loginUserWithEmailAndPassword(email, password);
@@ -113,6 +156,8 @@ class AuthService extends GetxController {
       await _auth.signOut(); // Sign out from Firebase
       await sharedPreferencesService.clear();
       photoUrl.value = "";
+      userName.value = "";
+      userEmail.value = "";
       Get.snackbar("Success", "Logged out successfully");
     } catch (e) {
       print(e);

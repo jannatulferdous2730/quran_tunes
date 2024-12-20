@@ -1,43 +1,47 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreService {
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // Add a Song to Firestore
-  Future<void> addSong(Map<String, dynamic> songData) async {
+  String? get userId => _auth.currentUser?.uid;
+
+  Future<void> addFavorite(Map<String, dynamic> favoriteData) async {
+    if (userId == null) return;
     try {
-      await _db.collection('songs').add(songData);
-      print("Song added successfully!");
+      await _firestore
+          .collection('users')
+          .doc(userId)
+          .collection('favorites')
+          .add(favoriteData);
     } catch (e) {
-      print("Error adding song: $e");
+      print("Error adding favorite: $e");
     }
   }
 
-  // Fetch All Songs
-  Stream<List<Map<String, dynamic>>> getSongs() {
-    return _db.collection('songs').snapshots().map((snapshot) {
-      return snapshot.docs.map((doc) => doc.data()).toList();
-    });
-  }
-
-  // Add User Data
-  Future<void> addUser(String userId, Map<String, dynamic> userData) async {
+  Future<void> removeFavorite(String favoriteId) async {
+    if (userId == null) return;
     try {
-      await _db.collection('users').doc(userId).set(userData);
-      print("User added successfully!");
+      await _firestore
+          .collection('users')
+          .doc(userId)
+          .collection('favorites')
+          .doc(favoriteId)
+          .delete();
     } catch (e) {
-      print("Error adding user: $e");
+      print("Error removing favorite: $e");
     }
   }
 
-  // Fetch User Data
-  Future<Map<String, dynamic>?> getUser(String userId) async {
-    try {
-      var doc = await _db.collection('users').doc(userId).get();
-      return doc.data();
-    } catch (e) {
-      print("Error fetching user data: $e");
-      return null;
-    }
+  Stream<List<Map<String, dynamic>>> getFavorites() {
+    if (userId == null) return const Stream.empty();
+    return _firestore
+        .collection('users')
+        .doc(userId)
+        .collection('favorites')
+        .snapshots()
+        .map((snapshot) =>
+        snapshot.docs.map((doc) => {...doc.data(), 'id': doc.id}).toList());
   }
 }

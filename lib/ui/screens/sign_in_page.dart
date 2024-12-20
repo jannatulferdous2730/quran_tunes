@@ -27,7 +27,7 @@ class SignInPage extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: SvgPicture.asset(
-          'assets/vectors/spotify_logo.svg',
+          'assets/vectors/logo.svg',
           height: size.height * 0.05,  
         ),
         centerTitle: true,
@@ -90,7 +90,7 @@ class SignInPage extends StatelessWidget {
               GestureDetector(
                 onTap: () async {
                   isLoading.value = true;
-                  isRegistering.value 
+                  isRegistering.value
                   ? await authService.register(mailController.text, passwordController.text)
                   : await authService.signin(mailController.text, passwordController.text);
                   isLoading.value = false;
