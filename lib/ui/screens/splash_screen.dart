@@ -18,7 +18,7 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        child: SvgPicture.asset('assets/vectors/spotify_logo.svg'),
+        child: SvgPicture.asset('assets/vectors/logo.svg',height: 50,),
       )
     );
 

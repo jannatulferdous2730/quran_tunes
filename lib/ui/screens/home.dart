@@ -70,11 +70,13 @@ class Home extends StatelessWidget {
                 items: [
                   Stack(
                       children: [
+
                         Align(
                             alignment: Alignment.bottomCenter,
                             child: SvgPicture.asset('assets/vectors/Carousel_m.svg')),
                         Positioned(
                             left: size.width * .63,
+                            bottom: 5,
                             child: Image.asset("assets/images/lamp_m.png"))
                       ],
                   ),

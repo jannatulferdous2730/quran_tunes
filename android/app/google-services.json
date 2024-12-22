@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "807122748552-1k18c5qqhln9phg114i5hp184jbgs9lf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quran_tunes",
+            "certificate_hash": "214290d38ccfc66d401f57647221f9c2c44debd9"
+          }
+        },
+        {
           "client_id": "807122748552-4crqnm5lhpdu4gs8id0n2lvesl5satsi.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

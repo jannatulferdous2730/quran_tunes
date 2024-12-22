@@ -41,7 +41,7 @@ class GetStarted extends StatelessWidget {
                 const Spacer(),
     
                 Text(
-                  'Millions of songs.',
+                  'Millions of surah.',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: size.width * 0.035,
@@ -50,7 +50,7 @@ class GetStarted extends StatelessWidget {
                 ),
     
                 Text(
-                  'Free on Spotify,',
+                  'Free on QuranTunes,',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: size.width * 0.040,

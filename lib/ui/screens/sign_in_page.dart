@@ -26,6 +26,7 @@ class SignInPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: SvgPicture.asset(
           'assets/vectors/logo.svg',
           height: size.height * 0.05,  

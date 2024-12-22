@@ -19,6 +19,7 @@ class UserProfile extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: CupertinoColors.activeGreen,
         title: const Text("Profile"),
         centerTitle: true,
