@@ -16,8 +16,8 @@ Here is a quick look at the app's screenshots:
 ## App Features
 
 - Splash screen
-- User authentication (using Rest API)
-- User registration with specific user roles (e.g., admin, mechanic)
+- User authentication
+- User registration with specific user roles 
 - 3 dedicated tabs for different Qaris.
 
 - Each Qari features 7 Surahs.
