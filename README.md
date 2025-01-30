@@ -48,7 +48,7 @@ For detailed instructions, check this [Reference Video](https://youtu.be/mMeQhLG
 ### Running the App:
 
 1. Open Android Studio.
-2. Select "Project from Version Control (VCS)" and paste the project URL: [GitHub Repository](https://github.com/NoorMohammedAnik/car_workshop_app)
+2. Select "Project from Version Control (VCS)" and paste the project URL: [GitHub Repository](https://github.com/jannatulferdous2730/quran_tunes.git)
 3. The project will be imported into Android Studio.
 4. Run the app on an emulator or a physical device.
 
