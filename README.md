@@ -43,7 +43,7 @@ To run the app, you'll need to set up Flutter and Dart on your machine.
 7. Set up the Flutter SDK in your system environment variables.
 8. Specify the Flutter SDK path in your Android Studio settings.
 
-For detailed instructions, check this [Reference Video](https://youtu.be/mMeQhLGD-og?si=rXZQVFBjGOu12aM8).
+
 
 ### Running the App:
 
